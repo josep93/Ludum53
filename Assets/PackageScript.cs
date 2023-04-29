@@ -15,7 +15,7 @@ public class PackageScript : MonoBehaviour
 
     enum PauseStatus : byte
     {
-        Playing,
+        Running,
         Paused
     }
 
@@ -31,7 +31,8 @@ public class PackageScript : MonoBehaviour
     {
         inputActions = new InputSystem();
         StateChange(State.Ready);
-        pauseStatus = PauseStatus.Playing;
+        pauseStatus = PauseStatus.Running;
+        EventsScript.current.pauseAction += OnPause;
     }
 
     // Update is called once per frame
@@ -79,9 +80,14 @@ public class PackageScript : MonoBehaviour
 
     private void Throw(InputAction.CallbackContext ctx)
     {
-        if (pauseStatus == PauseStatus.Playing)
+        if (pauseStatus == PauseStatus.Running)
         {
             power += 7;
         }
+    }
+
+    private void OnPause(bool pause)
+    {
+        pauseStatus = pause ? PauseStatus.Paused : PauseStatus.Running;
     }
 }
