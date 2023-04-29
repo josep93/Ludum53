@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class ParalaxObjectScript : MonoBehaviour
 {
-    private float speed = 0;
-    private GameObject target;
+    [SerializeField] private float lifeTime = 8;
+
+    private GameObject spawner;
+    private Vector3 origin;
+    private Vector3 direction;
+    private float speed = 3;
+    
+    private Rigidbody2D rb;
 
     private void Start()
     {
-        target = GameObject.FindWithTag("Finish");
-        if (target == null)
-        {
-            target = GameObject.Find("ParalaxDestroyer");
-        }
+        rb = GetComponent<Rigidbody2D>();
+        spawner = GameObject.FindGameObjectWithTag("Respawn");
+        origin = Vector3.zero;
+        StartCoroutine(DisableObject());
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        transform.position = Vector2.MoveTowards(
-            transform.position, 
-            new Vector2(target.transform.position.x, transform.position.y), 
-            speed * Time.deltaTime);
+        direction = (origin - spawner.transform.position).normalized;
+        rb.velocity = direction * speed;
     }
 
 
@@ -30,4 +33,12 @@ public class ParalaxObjectScript : MonoBehaviour
     {
         this.speed = speed;
     }
+
+
+    IEnumerator DisableObject()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        this.gameObject.SetActive(false);
+    }
+
 }

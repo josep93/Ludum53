@@ -23,5 +23,9 @@ public class ParalaxObjectPooling : MonoBehaviour
         return c;
     }
 
+    
+    public void SetSpeed()
+    {
 
+    }
 }

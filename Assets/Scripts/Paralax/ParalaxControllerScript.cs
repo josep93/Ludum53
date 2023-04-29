@@ -24,4 +24,19 @@ public class ParalaxControllerScript : MonoBehaviour
             cc.InitCapa(sprites, speed, timeGenerator);
         }
     }
+
+
+    public void SetSpeed(float speed)
+    {
+        foreach (var cap in capas)
+        {
+            CapaController cc = cap.GetComponent<CapaController>();
+            cc.SetSpeed(speed);
+        }
+    }
+
+    public void SetDirectio(Vector2 direction)
+    {
+        
+    }
 }
