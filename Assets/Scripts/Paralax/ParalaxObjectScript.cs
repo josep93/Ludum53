@@ -19,7 +19,7 @@ public class ParalaxObjectScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spawner = GameObject.FindGameObjectWithTag("Respawn");
-        origin = Vector3.zero;
+        origin = GameObject.Find("ParalaxController").transform.position;
         StartCoroutine(DisableObject());
     }
 

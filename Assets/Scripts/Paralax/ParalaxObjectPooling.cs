@@ -5,6 +5,7 @@ using UnityEngine;
 public class ParalaxObjectPooling : MonoBehaviour
 {
     [SerializeField] private GameObject paralaxObject;
+    [SerializeField] private GameObject continer;
     private List<GameObject> objectCreated = new();
 
     public GameObject GetObject()
@@ -18,7 +19,7 @@ public class ParalaxObjectPooling : MonoBehaviour
             }
         }
 
-        GameObject c = Instantiate(paralaxObject);
+        GameObject c = Instantiate(paralaxObject, continer.transform);
         objectCreated.Add(c);
         return c;
     }
