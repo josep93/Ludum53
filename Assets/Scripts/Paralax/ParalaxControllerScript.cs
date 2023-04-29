@@ -35,8 +35,13 @@ public class ParalaxControllerScript : MonoBehaviour
         }
     }
 
-    public void SetDirectio(Vector2 direction)
+
+    public void SetHeight(Vector2 offset)
     {
-        
+        foreach (var cap in capas)
+        {
+            CapaController cc = cap.GetComponent<CapaController>();
+            cc.SetOffset(offset);
+        }
     }
 }

@@ -204,7 +204,7 @@ MonoBehaviour:
   scaleModification: 100
   speedModification: 100
   layer: 3
-  offset: 5
+  offsetPosition: {x: 5, y: 5}
   offsetTimeGenerator: 1
 --- !u!1 &742396741
 GameObject:
@@ -265,7 +265,7 @@ MonoBehaviour:
   - {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   - {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   speed: 5
-  timeGenerator: 2
+  timeGenerator: 1
 --- !u!114 &742396744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   scaleModification: 70
   speedModification: 70
   layer: 1
-  offset: 5
+  offsetPosition: {x: 5, y: 5}
   offsetTimeGenerator: 1
 --- !u!1 &929283826
 GameObject:
@@ -465,7 +465,7 @@ MonoBehaviour:
   scaleModification: 50
   speedModification: 50
   layer: 0
-  offset: 5
+  offsetPosition: {x: 5, y: 5}
   offsetTimeGenerator: 1
 --- !u!1 &2140887441
 GameObject:
@@ -517,5 +517,5 @@ MonoBehaviour:
   scaleModification: 85
   speedModification: 85
   layer: 2
-  offset: 5
+  offsetPosition: {x: 5, y: 5}
   offsetTimeGenerator: 1

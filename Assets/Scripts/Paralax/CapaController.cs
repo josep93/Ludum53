@@ -15,7 +15,7 @@ public class CapaController : MonoBehaviour
     [Tooltip("Orden de posición en el layer (Por defecto 0)")]
     [SerializeField] private int layer = 0;
     [Tooltip("Offset de generación de los objetos a partir del punto de origen")]
-    [SerializeField] private float offset = 5;
+    [SerializeField] private Vector2 offsetPosition = new(5, 5);
     [Tooltip("Offset de tiempo de generación de los objetos")]
     [SerializeField] private float offsetTimeGenerator = 1f;
 
@@ -41,9 +41,9 @@ public class CapaController : MonoBehaviour
         StartCoroutine(GenerateObject());
     }
 
-    public void SetOffset(float offset)
+    public void SetOffset(Vector2 offset)
     {
-        this.offset = offset;
+        this.offsetPosition = offset;
     }
 
     public void SetSpeed(float speed)
@@ -69,8 +69,8 @@ public class CapaController : MonoBehaviour
             
             GameObject c = paralaxPool.GetObject();
             c.transform.position = new Vector2(
-                paralaxSpawner.transform.position.x + Random.Range(-offset, offset), 
-                paralaxSpawner.transform.position.y + Random.Range(-offset, offset));
+                paralaxSpawner.transform.position.x + Random.Range(-offsetPosition.x, offsetPosition.x), 
+                paralaxSpawner.transform.position.y + Random.Range(-offsetPosition.y, offsetPosition.y));
             c.transform.localScale = c.transform.localScale * (scaleModification / 100);
 
             ParalaxObjectScript paralaxObjectScript = c.GetComponent<ParalaxObjectScript>();
