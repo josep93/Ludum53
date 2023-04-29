@@ -22,9 +22,52 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""InputSystem"",
-    ""maps"": [],
+    ""maps"": [
+        {
+            ""name"": ""Ready"",
+            ""id"": ""1ff2ae11-9b12-4a0b-a0d1-2a3df6fc9b4b"",
+            ""actions"": [
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb395235-ead3-4f2d-816a-db3cc1da5bb7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b9f259d2-e291-4460-bf80-6bb32dc4bd6a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8b6d4f2-e338-4c04-bf1e-5467c781032b"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        }
+    ],
     ""controlSchemes"": []
 }");
+        // Ready
+        m_Ready = asset.FindActionMap("Ready", throwIfNotFound: true);
+        m_Ready_Throw = m_Ready.FindAction("Throw", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -81,5 +124,55 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     public int FindBinding(InputBinding bindingMask, out InputAction action)
     {
         return asset.FindBinding(bindingMask, out action);
+    }
+
+    // Ready
+    private readonly InputActionMap m_Ready;
+    private List<IReadyActions> m_ReadyActionsCallbackInterfaces = new List<IReadyActions>();
+    private readonly InputAction m_Ready_Throw;
+    public struct ReadyActions
+    {
+        private @InputSystem m_Wrapper;
+        public ReadyActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Throw => m_Wrapper.m_Ready_Throw;
+        public InputActionMap Get() { return m_Wrapper.m_Ready; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ReadyActions set) { return set.Get(); }
+        public void AddCallbacks(IReadyActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ReadyActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ReadyActionsCallbackInterfaces.Add(instance);
+            @Throw.started += instance.OnThrow;
+            @Throw.performed += instance.OnThrow;
+            @Throw.canceled += instance.OnThrow;
+        }
+
+        private void UnregisterCallbacks(IReadyActions instance)
+        {
+            @Throw.started -= instance.OnThrow;
+            @Throw.performed -= instance.OnThrow;
+            @Throw.canceled -= instance.OnThrow;
+        }
+
+        public void RemoveCallbacks(IReadyActions instance)
+        {
+            if (m_Wrapper.m_ReadyActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IReadyActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ReadyActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ReadyActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ReadyActions @Ready => new ReadyActions(this);
+    public interface IReadyActions
+    {
+        void OnThrow(InputAction.CallbackContext context);
     }
 }
