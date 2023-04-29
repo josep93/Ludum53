@@ -76,6 +76,13 @@ public class PackageScript : MonoBehaviour
             StateChange(State.Delivered);
         }
         powerText.text = "Power: " + power + "%";
+        if (power == 0)
+        {
+            DelivererScript.current.StateUpdate(DelivererScript.State.Standby);
+        } else if (power > 0)
+        {
+            DelivererScript.current.StateUpdate(DelivererScript.State.Delivering);
+        }
     }
 
     private void Throw(InputAction.CallbackContext ctx)
