@@ -7,6 +7,8 @@ public class ParalaxObjectScript : MonoBehaviour
     [SerializeField] private float lifeTime = 8;
 
     private GameObject spawner;
+    private CapaController controller;
+
     private Vector3 origin;
     private Vector3 direction;
     private float speed = 3;
@@ -25,13 +27,18 @@ public class ParalaxObjectScript : MonoBehaviour
     void Update()
     {
         direction = (origin - spawner.transform.position).normalized;
-        rb.velocity = direction * speed;
+        rb.velocity = direction * controller.GetModificationSpeed();
     }
 
 
     public void SetSpeed(float speed)
     {
         this.speed = speed;
+    }
+
+    public void SetController(CapaController controller)
+    {
+        this.controller = controller;
     }
 
 

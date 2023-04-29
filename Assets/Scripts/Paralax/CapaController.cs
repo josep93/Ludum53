@@ -16,6 +16,8 @@ public class CapaController : MonoBehaviour
     [SerializeField] private int layer = 0;
     [Tooltip("Offset de generación de los objetos a partir del punto de origen")]
     [SerializeField] private float offset = 5;
+    [Tooltip("Offset de tiempo de generación de los objetos")]
+    [SerializeField] private float offsetTimeGenerator = 1f;
 
     private Sprite[] sprites;
     private float speed;
@@ -49,18 +51,31 @@ public class CapaController : MonoBehaviour
         this.speed = speed * (speedModification / 100);
     }
 
+    public void SetTimeGenerator(float timeGenerator)
+    {
+        this.timeGenerator = timeGenerator;
+    }
+
+    public float GetModificationSpeed()
+    {
+        return speed;
+    }
+
     IEnumerator GenerateObject()
     {
         while (true)
         {
-            yield return new WaitForSeconds(timeGenerator + Random.Range(-1f, 1f));
+            yield return new WaitForSeconds(timeGenerator + Random.Range(-offsetTimeGenerator, offsetTimeGenerator));
             
             GameObject c = paralaxPool.GetObject();
             c.transform.position = new Vector2(
                 paralaxSpawner.transform.position.x + Random.Range(-offset, offset), 
                 paralaxSpawner.transform.position.y + Random.Range(-offset, offset));
             c.transform.localScale = c.transform.localScale * (scaleModification / 100);
-            c.GetComponent<ParalaxObjectScript>().SetSpeed(speed);
+
+            ParalaxObjectScript paralaxObjectScript = c.GetComponent<ParalaxObjectScript>();
+            paralaxObjectScript.SetSpeed(speed);
+            paralaxObjectScript.SetController(this);
 
             SpriteRenderer cs = c.GetComponent<SpriteRenderer>();
             cs.sprite = sprites[Random.Range(0, sprites.Length)];
