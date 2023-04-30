@@ -81,6 +81,7 @@ public class DelivererScript : MonoBehaviour
             sprite.sprite = deliveringSprites[0];
             PackageScript.current.DeliveryMovement(0);
             CameraPositionScript.current.DramaticPose();
+            Invoke(nameof(StartThrowingMusic), 0.5f);
             Invoke(nameof(ThrowRealPackage), 1.0f);
         }
     }
@@ -154,11 +155,16 @@ public class DelivererScript : MonoBehaviour
         PackageScript.current.DeliveryMovement(-2);
         sprite.sprite = standbySprites[1];
         punchingSound.Shout();
+        punchingSound.BreakMug();
         yield return new WaitForSeconds(0.2f);
         PackageScript.current.StateChange(PackageScript.State.Ready);
         powerBar.enabled = true;
     }
 
+    private void StartThrowingMusic()
+    {
+        MusicScript.current.SelectTrack(2, true);
+    }
 
     private void ThrowRealPackage()
     {
@@ -169,6 +175,8 @@ public class DelivererScript : MonoBehaviour
         // Ativamos el paquete real y desactivamos el falso
         realPackage.SetActive(true);
         fakePackage.SetActive(false);
+
+        MusicScript.current.SelectTrack(2, true);
 
         //realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
         // Lanzamos el paquete (float force, float angle)

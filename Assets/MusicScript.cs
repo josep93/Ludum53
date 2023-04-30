@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MusicScript : MonoBehaviour
 {
     public static MusicScript current;
-    AudioSource audioSource;
+    AudioSource audioSource,audioSource2;
     [SerializeField] AudioClip[] clips;
     [SerializeField] AudioClip menuClip;
 
@@ -18,7 +18,8 @@ public class MusicScript : MonoBehaviour
         if (current != this)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponents<AudioSource>()[0];
+        audioSource2 = GetComponents<AudioSource>()[1];
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             SelectMenu();
@@ -27,13 +28,13 @@ public class MusicScript : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        audioSource = GetComponent<AudioSource>();
         StopMusic();
     }
 
     public void StopMusic()
     {
         audioSource.Stop();
+        audioSource2.Stop();
         audioSource.clip = null;
     }
     public void SelectTrack(int index, bool loop = false)
@@ -42,6 +43,14 @@ public class MusicScript : MonoBehaviour
         audioSource.clip = clips[index];
         audioSource.loop = loop;
         audioSource.Play();
+    }
+
+    public void SelectTrack_2(int index, bool loop = false)
+    {
+        if (audioSource2.clip == clips[index]) return;
+        audioSource2.clip = clips[index];
+        audioSource2.loop = loop;
+        audioSource2.Play();
     }
 
     public void SelectMenu()

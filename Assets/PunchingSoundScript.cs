@@ -5,7 +5,7 @@ using UnityEngine;
 public class PunchingSoundScript : MonoBehaviour
 {
     [SerializeField] AudioClip[] punchSounds,shoutSounds;
-    [SerializeField] AudioClip lastPunchSound;
+    [SerializeField] AudioClip lastPunchSound,brokenMug;
     AudioSource[] audios;
     int iterator=0;
     // Start is called before the first frame update
@@ -44,6 +44,15 @@ public class PunchingSoundScript : MonoBehaviour
     {
         var audio = audios[iterator];
         audio.clip = shoutSounds[0];
+        audio.Play();
+        iterator++;
+        iterator = iterator > shoutSounds.Length - 2 ? 0 : iterator;
+    }
+
+    public void BreakMug()
+    {
+        var audio = audios[iterator];
+        audio.clip = brokenMug;
         audio.Play();
         iterator++;
         iterator = iterator > shoutSounds.Length - 2 ? 0 : iterator;
