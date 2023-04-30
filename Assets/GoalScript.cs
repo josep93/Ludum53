@@ -8,7 +8,7 @@ public class GoalScript : MonoBehaviour
 {
     [SerializeField] bool ultraHigh;
     [SerializeField] TextMeshProUGUI distance;
-    [SerializeField] GameObject winScreen;
+    [SerializeField] GameObject winScreen, breakingIn;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,11 +37,18 @@ public class GoalScript : MonoBehaviour
 
     void Win()
     {
-        Invoke("TimeStop", 0.05f);
+        BreakIn();
+        Invoke("StopObject", 0.05f);
         Invoke("WinScreen", 0.3f);
     }
 
-    void TimeStop()
+    void BreakIn()
+    {
+        breakingIn.SetActive(true);
+        breakingIn.transform.position = new Vector3(breakingIn.transform.position.x, PackageDeliveryScript.realPackage.transform.position.y, breakingIn.transform.position.z);
+
+    }
+    void StopObject()
     {
         PackageDeliveryScript.realPackage.rb.velocity = Vector3.zero;
         PackageDeliveryScript.realPackage.rb.angularVelocity = 0;
