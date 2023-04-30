@@ -18,7 +18,7 @@ public class ParalaxControllerScript : MonoBehaviour
 
     private void Start()
     {
-        InitParalax();
+        //InitParalax();
     }
 
     public void InitParalax()

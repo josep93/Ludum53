@@ -27,4 +27,9 @@ public class MusicScript : MonoBehaviour
         audioSource.loop = loop;
         audioSource.Play();
     }
+
+    public float GetLengthTrack(int index)
+    {
+        return clips[index].length;
+    }
 }

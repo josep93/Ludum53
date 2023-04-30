@@ -32,6 +32,12 @@ public class DelivererScript : MonoBehaviour
 
     [SerializeField]State state;
     [SerializeField] Image powerBar;
+
+    [Header("Conexion")]
+    [SerializeField] GameObject realPackage;
+    [SerializeField] GameObject fakePackage;
+    [SerializeField] GameObject cinemachine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +64,7 @@ public class DelivererScript : MonoBehaviour
         if (state == State.Delivering)
         {
             MusicScript.current.SelectTrack(0, true);
+            Invoke(nameof(ThrowRealPackage), MusicScript.current.GetLengthTrack(0));
         }
         if (state == State.Delivered)
         {
@@ -142,6 +149,23 @@ public class DelivererScript : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         PackageScript.current.StateChange(PackageScript.State.Ready);
         powerBar.enabled = true;
+    }
+
+
+    private void ThrowRealPackage()
+    {
+
+        // Activamos el Cinemachine
+        cinemachine.SetActive(true);
+
+        // Ativamos el paquete real y desactivamos el falso
+        realPackage.SetActive(true);
+        fakePackage.SetActive(false);
+
+        realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
+
+        // Lanzamos el paquete (float force, float angle)
+        realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(50, 45);
     }
 
 }
