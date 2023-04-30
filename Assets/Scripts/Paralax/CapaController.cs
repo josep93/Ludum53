@@ -18,10 +18,12 @@ public class CapaController : MonoBehaviour
     [SerializeField] private Vector2 offsetPosition = new(5, 5);
     [Tooltip("Offset de tiempo de generación de los objetos")]
     [SerializeField] private float offsetTimeGenerator = 1f;
+    [SerializeField] private bool hasVerticalMove = false;
 
     private Sprite[] sprites;
     private float speed;
     private float timeGenerator;
+    private Coroutine coroutine;
 
     private void Start()
     {
@@ -33,12 +35,19 @@ public class CapaController : MonoBehaviour
     }
 
 
-    public void InitCapa(Sprite[] sprites, float speed, float timeGenerator)
+    public void InitCapa(Sprite[] sprites, float speed, float timeGenerator, bool hasVerticalMove)
     {
         this.sprites = sprites;
         this.speed = speed * (speedModification / 100);
         this.timeGenerator = timeGenerator;
-        StartCoroutine(GenerateObject());
+        this.hasVerticalMove = hasVerticalMove;
+        coroutine = StartCoroutine(GenerateObject());
+    }
+
+    public void StopCapa()
+    {
+        if (coroutine == null) { return; }
+        StopCoroutine(coroutine);
     }
 
     public void SetOffset(Vector2 offset)
@@ -49,6 +58,11 @@ public class CapaController : MonoBehaviour
     public void SetSpeed(float speed)
     {
         this.speed = speed * (speedModification / 100);
+    }
+
+    public void SetSprites(Sprite[] sprites)
+    {
+        this.sprites = sprites;
     }
 
     public void SetTimeGenerator(float timeGenerator)
@@ -73,9 +87,9 @@ public class CapaController : MonoBehaviour
                 paralaxSpawner.transform.position.y + Random.Range(-offsetPosition.y, offsetPosition.y));
             c.transform.localScale = c.transform.localScale * (scaleModification / 100);
 
-            ParalaxObjectScript paralaxObjectScript = c.GetComponent<ParalaxObjectScript>();
-            paralaxObjectScript.SetSpeed(speed);
+            ParalaxObjectScript paralaxObjectScript = c.GetComponent<ParalaxObjectScript>();    
             paralaxObjectScript.SetController(this);
+            paralaxObjectScript.SetVerticalMove(hasVerticalMove);
 
             SpriteRenderer cs = c.GetComponent<SpriteRenderer>();
             cs.sprite = sprites[Random.Range(0, sprites.Length)];

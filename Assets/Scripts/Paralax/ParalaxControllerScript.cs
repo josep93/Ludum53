@@ -10,6 +10,11 @@ public class ParalaxControllerScript : MonoBehaviour
     [Tooltip("Tiempo (en segundos) aprox. que tarda en generar elementos en pantalla")]
     [SerializeField] private float timeGenerator;
 
+    [Header("Seguimiento paquete")]
+    [SerializeField] private GameObject packageDelivery;
+    [Tooltip("Aplica movimiento vertical dependiente de del movimiento del paquete")]
+    [SerializeField] private bool hasVerticalMove = true;
+    
 
     private void Start()
     {
@@ -21,7 +26,16 @@ public class ParalaxControllerScript : MonoBehaviour
         foreach (var cap in capas)
         {
             CapaController cc = cap.GetComponent<CapaController>();
-            cc.InitCapa(sprites, speed, timeGenerator);
+            cc.InitCapa(sprites, speed, timeGenerator, hasVerticalMove);
+        }
+    }
+
+    public void StopParalax()
+    {
+        foreach (var cap in capas)
+        {
+            CapaController cc = cap.GetComponent<CapaController>();
+            cc.StopCapa();
         }
     }
 
@@ -36,12 +50,26 @@ public class ParalaxControllerScript : MonoBehaviour
     }
 
 
-    public void SetHeight(Vector2 offset)
+    public void SetOffset(Vector2 offset)
     {
         foreach (var cap in capas)
         {
             CapaController cc = cap.GetComponent<CapaController>();
             cc.SetOffset(offset);
         }
+    }
+
+    public void SetSprite(Sprite[] sprites)
+    {
+        foreach (var cap in capas)
+        {
+            CapaController cc = cap.GetComponent<CapaController>();
+            cc.SetSprites(sprites);
+        }
+    }
+
+    public GameObject GetPackageDelivery()
+    {
+        return packageDelivery;
     }
 }
