@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ParalaxControllerScript : MonoBehaviour
@@ -12,6 +13,7 @@ public class ParalaxControllerScript : MonoBehaviour
 
     [Header("Seguimiento paquete")]
     [SerializeField] private GameObject packageDelivery;
+    [SerializeField] private bool isWorking = false;
     [Tooltip("Aplica movimiento vertical dependiente de del movimiento del paquete")]
     [SerializeField] private bool hasVerticalMove = true;
     [Tooltip("Altura mínima para que se active el Paralax")]
@@ -27,16 +29,21 @@ public class ParalaxControllerScript : MonoBehaviour
     private void Update()
     {
 
-
-
         if (hasVerticalMove)
         {
             transform.position = packageDelivery.transform.position;
-            return;
+        }
+        else
+        {
+            // Aplicar solo movimiento horizontal
+            transform.position = new Vector2(packageDelivery.transform.position.x, transform.position.y);
         }
 
-        // Aplicar solo movimiento horizontal
-        transform.position = new Vector2(packageDelivery.transform.position.x, transform.position.y);
+        if (packageDelivery.transform.position.y > alturaMinima && packageDelivery.transform.position.y < alturaMaxima)
+        {
+
+
+        }
     }
 
     public void InitParalax()
