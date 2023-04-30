@@ -96,7 +96,6 @@ public class DelivererScript : MonoBehaviour
                     ChangeSprite();
                     punchingSound.CallPunch();
                     if (Random.Range(0, 4) == 3) {
-                        Debug.Log("Ahhh");
                         punchingSound.CallShout();
                     }
                 }
