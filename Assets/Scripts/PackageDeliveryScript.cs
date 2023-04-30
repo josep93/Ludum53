@@ -14,6 +14,7 @@ public class PackageDeliveryScript : MonoBehaviour
     [SerializeField] private bool paralaxIsActive = false;
     [SerializeField] private GameObject ground;
 
+    [SerializeField] private GameObject powerBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +58,13 @@ public class PackageDeliveryScript : MonoBehaviour
 
         Vector2 dir = (Vector2)(Quaternion.Euler(0, 0, angle) * Vector2.right);
         rb.AddForce(dir * force, ForceMode2D.Impulse);
-        rb.AddTorque(-150f);
+        rb.AddTorque(360f);
+        ShutDownPowerBar();
+    }
+
+    private void ShutDownPowerBar()
+    {
+        powerBar.SetActive(false);
     }
 
 }

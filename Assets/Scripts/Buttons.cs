@@ -27,7 +27,7 @@ public class Buttons : MonoBehaviour
     {
         
      //   audioSource.Play();
-        SceneManager.LoadScene("LabJosep");    
+        SceneManager.LoadScene(1);    
 
     }
 
