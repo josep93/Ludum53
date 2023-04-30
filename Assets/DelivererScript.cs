@@ -170,6 +170,8 @@ public class DelivererScript : MonoBehaviour
         realPackage.SetActive(true);
         fakePackage.SetActive(false);
 
+        ObstacleControllerScript.instance.StartObstacle();
+
         //realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
         // Lanzamos el paquete (float force, float angle)
         realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(force, angle);

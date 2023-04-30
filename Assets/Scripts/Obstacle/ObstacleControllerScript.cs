@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class ObstacleControllerScript : MonoBehaviour
 {
-    [Header("Seguimiento paquete")]
-    [SerializeField] private GameObject packageDelivery;
 
-    // Start is called before the first frame update
-    void Start()
+    public static ObstacleControllerScript instance;
+
+    [Header("Seguimiento paquete")]
+    [SerializeField] private GameObject packageDelivery = null;
+
+    private void Awake()
     {
-        packageDelivery = PackageDeliveryScript.realPackage.gameObject;
+        if (instance == null)
+        {
+            instance = this;
+            return;
+        }
+        Destroy(gameObject);
+    }
+
+
+    public void StartObstacle()
+    {
+        packageDelivery = GameObject.FindGameObjectWithTag("Package");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (packageDelivery == null) { return; }
         transform.position = packageDelivery.transform.position;
     }
 }

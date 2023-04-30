@@ -949,6 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e4d2168224a00749876e70bfca34cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  packageDelivery: {fileID: 0}
 --- !u!4 &339931126
 Transform:
   m_ObjectHideFlags: 0
@@ -957,7 +958,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339931124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 818.8298, y: -3.9442992, z: 1.5225883}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2105,7 +2106,7 @@ Transform:
   m_GameObject: {fileID: 513235244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 818.2, y: -9.97, z: 0}
-  m_LocalScale: {x: 3, y: 1.5, z: 1}
+  m_LocalScale: {x: 3, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4993,7 +4994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1aae9ceb56ec645a27890b906fd772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  packageDelivery: {fileID: 0}
 --- !u!1 &1698985663
 GameObject:
   m_ObjectHideFlags: 0
@@ -6049,6 +6049,14 @@ PrefabInstance:
     - target: {fileID: 6706013748010863428, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
       propertyPath: m_Name
       value: ParalaxController
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863430, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: alturaMaxima
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863430, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: alturaMinima
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6706013748010863430, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
       propertyPath: timeGenerator
