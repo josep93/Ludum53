@@ -9,10 +9,12 @@ public class GoalScript : MonoBehaviour
     [SerializeField] bool ultraHigh;
     [SerializeField] TextMeshProUGUI distance;
     [SerializeField] GameObject winScreen, breakingIn;
+    bool won=false;
+    AudioSource audio;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class GoalScript : MonoBehaviour
     {
         if (PackageDeliveryScript.realPackage == null) return;
         SetDistance();
+        if (won) return;
         if (ultraHigh)
         {
             if (PackageDeliveryScript.realPackage.transform.position.x >= transform.position.x) Win();
@@ -37,6 +40,7 @@ public class GoalScript : MonoBehaviour
 
     void Win()
     {
+        won = true;
         BreakIn();
         Invoke("StopObject", 0.05f);
         Invoke("WinScreen", 0.3f);
@@ -46,7 +50,7 @@ public class GoalScript : MonoBehaviour
     {
         breakingIn.SetActive(true);
         breakingIn.transform.position = new Vector3(breakingIn.transform.position.x, PackageDeliveryScript.realPackage.transform.position.y, breakingIn.transform.position.z);
-
+        audio.Play();
     }
     void StopObject()
     {
