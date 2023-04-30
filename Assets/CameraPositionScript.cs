@@ -25,7 +25,7 @@ public class CameraPositionScript : MonoBehaviour
         transform.position = dramaticPosition;
         transform.rotation = Quaternion.Euler(dramaticRotation);
         cameraComponent.orthographicSize = dramaticSize;
-        cameraComponent.backgroundColor = Color.black;
+        //cameraComponent.backgroundColor = Color.black;
         fadeToBlack.enabled = true;
     }
 
