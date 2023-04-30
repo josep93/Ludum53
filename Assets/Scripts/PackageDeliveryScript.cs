@@ -26,7 +26,7 @@ public class PackageDeliveryScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y - ground.transform.position.y >  60 && !paralaxIsActive)
+        /*if (transform.position.y - ground.transform.position.y >  60 && !paralaxIsActive)
         {
             paralax.InitParalax();
             paralaxIsActive = true;
@@ -38,7 +38,7 @@ public class PackageDeliveryScript : MonoBehaviour
             paralax.StopParalax();
             paralaxIsActive = false;
             return;
-        }
+        }*/
 
     }
 
