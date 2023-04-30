@@ -345,6 +345,7 @@ MonoBehaviour:
   paralax: {fileID: 1853297008}
   paralaxIsActive: 0
   ground: {fileID: 980507960}
+  powerBar: {fileID: 982925720}
 --- !u!50 &215904401
 Rigidbody2D:
   serializedVersion: 4
