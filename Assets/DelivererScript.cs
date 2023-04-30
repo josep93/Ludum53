@@ -73,6 +73,7 @@ public class DelivererScript : MonoBehaviour
         }
         if (state == State.Delivered)
         {
+            SpaceBarPromptScript.current.TurnOffPrompt();
             MusicScript.current.SelectTrack(1, false);
             spriteState = 0;
             punchingSound.FinalPunch();
