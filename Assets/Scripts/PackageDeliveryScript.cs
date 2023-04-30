@@ -16,7 +16,7 @@ public class PackageDeliveryScript : MonoBehaviour
     [SerializeField] private bool paralaxIsActive = false;
     [SerializeField] private GameObject ground;
 
-    [SerializeField] private GameObject powerBar;
+    [SerializeField] private GameObject powerBar,distance;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,11 +63,17 @@ public class PackageDeliveryScript : MonoBehaviour
         rb.AddForce(dir * force, ForceMode2D.Impulse);
         rb.AddTorque(360f);
         ShutDownPowerBar();
+        ActiveDistance();
     }
 
     private void ShutDownPowerBar()
     {
         powerBar.SetActive(false);
+    }
+
+    private void ActiveDistance()
+    {
+        distance.SetActive(true);
     }
 
 }
