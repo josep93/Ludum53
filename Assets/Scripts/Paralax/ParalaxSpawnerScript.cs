@@ -13,6 +13,10 @@ public class ParalaxSpawnerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (packageDelivery == null)
+        {
+            packageDelivery = GetComponentInParent<ParalaxControllerScript>().GetPackageDelivery();
+        }
         rbPackage = packageDelivery.GetComponent<Rigidbody2D>();
     }
 
