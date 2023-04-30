@@ -25,6 +25,15 @@ public class ParalaxControllerScript : MonoBehaviour
         }
     }
 
+    public void StopParalax()
+    {
+        foreach (var cap in capas)
+        {
+            CapaController cc = cap.GetComponent<CapaController>();
+            cc.StopCapa();
+        }
+    }
+
 
     public void SetSpeed(float speed)
     {
@@ -36,12 +45,21 @@ public class ParalaxControllerScript : MonoBehaviour
     }
 
 
-    public void SetHeight(Vector2 offset)
+    public void SetOffset(Vector2 offset)
     {
         foreach (var cap in capas)
         {
             CapaController cc = cap.GetComponent<CapaController>();
             cc.SetOffset(offset);
+        }
+    }
+
+    public void SetSprite(Sprite[] sprites)
+    {
+        foreach (var cap in capas)
+        {
+            CapaController cc = cap.GetComponent<CapaController>();
+            cc.SetSprites(sprites);
         }
     }
 }

@@ -22,6 +22,7 @@ public class CapaController : MonoBehaviour
     private Sprite[] sprites;
     private float speed;
     private float timeGenerator;
+    private Coroutine coroutine;
 
     private void Start()
     {
@@ -38,7 +39,13 @@ public class CapaController : MonoBehaviour
         this.sprites = sprites;
         this.speed = speed * (speedModification / 100);
         this.timeGenerator = timeGenerator;
-        StartCoroutine(GenerateObject());
+        coroutine = StartCoroutine(GenerateObject());
+    }
+
+    public void StopCapa()
+    {
+        if (coroutine == null) { return; }
+        StopCoroutine(coroutine);
     }
 
     public void SetOffset(Vector2 offset)
@@ -49,6 +56,11 @@ public class CapaController : MonoBehaviour
     public void SetSpeed(float speed)
     {
         this.speed = speed * (speedModification / 100);
+    }
+
+    public void SetSprites(Sprite[] sprites)
+    {
+        this.sprites = sprites;
     }
 
     public void SetTimeGenerator(float timeGenerator)
