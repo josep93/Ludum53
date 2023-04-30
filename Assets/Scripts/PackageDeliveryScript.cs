@@ -9,6 +9,11 @@ public class PackageDeliveryScript : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
 
+    [Header("Paralax")]
+    [SerializeField] private ParalaxControllerScript paralax;
+    [SerializeField] private bool paralaxIsActive = false;
+    [SerializeField] private GameObject ground;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +23,20 @@ public class PackageDeliveryScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.position.y - ground.transform.position.y >  60 && !paralaxIsActive)
+        {
+            paralax.InitParalax();
+            paralaxIsActive = true;
+            return;
+        }
+
+        if (transform.position.y - ground.transform.position.y < 60 && paralaxIsActive)
+        {
+            paralax.StopParalax();
+            paralaxIsActive = false;
+            return;
+        }
+
     }
 
     private void OnEnable()

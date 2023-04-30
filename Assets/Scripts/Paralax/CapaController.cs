@@ -79,8 +79,6 @@ public class CapaController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(timeGenerator + Random.Range(-offsetTimeGenerator, offsetTimeGenerator));
-            
             GameObject c = paralaxPool.GetObject();
             c.transform.position = new Vector2(
                 paralaxSpawner.transform.position.x + Random.Range(-offsetPosition.x, offsetPosition.x), 
@@ -94,6 +92,8 @@ public class CapaController : MonoBehaviour
             SpriteRenderer cs = c.GetComponent<SpriteRenderer>();
             cs.sprite = sprites[Random.Range(0, sprites.Length)];
             cs.sortingOrder = layer;
+
+            yield return new WaitForSeconds(timeGenerator + Random.Range(-offsetTimeGenerator, offsetTimeGenerator));
         }
     }
 }

@@ -189,8 +189,19 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &250877753 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6706013748010863430, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+  m_PrefabInstance: {fileID: 1225945922}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5087afd11ab1343a11d38e16ef1636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &378099578
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,15 +286,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1083116215}
-        m_TargetAssemblyTypeName: PackageDeliveryScript, Assembly-CSharp
-        m_MethodName: ThrowPackage
-        m_Mode: 4
+      - m_Target: {fileID: 752659601}
+        m_TargetAssemblyTypeName: LabController, Assembly-CSharp
+        m_MethodName: Throw
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 75
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -434,7 +445,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &680379960
 GameObject:
@@ -529,6 +540,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
   m_PrefabInstance: {fileID: 6706013748350605313}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &752659599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 752659600}
+  - component: {fileID: 752659601}
+  m_Layer: 0
+  m_Name: LabController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &752659600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752659599}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &752659601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752659599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c9b804fde48d443ac6817619ab13fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  package: {fileID: 1083116210}
+  paralax: {fileID: 0}
 --- !u!1 &929283826
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +853,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 20
+  angle: 45
+  rb: {fileID: 1083116212}
+  paralax: {fileID: 250877753}
+  paralaxIsActive: 0
+  ground: {fileID: 396164112}
 --- !u!1 &1205269882
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +929,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1225945922
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6706013748010863428, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_Name
+      value: ParalaxController
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863430, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: packageDelivery
+      value: 
+      objectReference: {fileID: 1083116210}
+    - target: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706013748010863431, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
 --- !u!1 &1649891616
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,7 +1219,7 @@ RectTransform:
   m_Children:
   - {fileID: 378099579}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

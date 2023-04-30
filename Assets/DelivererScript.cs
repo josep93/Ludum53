@@ -165,7 +165,7 @@ public class DelivererScript : MonoBehaviour
         realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
 
         // Lanzamos el paquete (float force, float angle)
-        realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(50, 45);
+        realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(60, 45);
     }
 
 }

@@ -21,6 +21,11 @@ public class ParalaxControllerScript : MonoBehaviour
         //InitParalax();
     }
 
+    private void Update()
+    {
+        transform.position = packageDelivery.transform.position;
+    }
+
     public void InitParalax()
     {
         foreach (var cap in capas)
