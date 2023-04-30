@@ -8,6 +8,7 @@ public class GoalScript : MonoBehaviour
 {
     [SerializeField] bool ultraHigh;
     [SerializeField] TextMeshProUGUI distance;
+    [SerializeField] GameObject winScreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +30,25 @@ public class GoalScript : MonoBehaviour
     {
         if (distance.IsActive())
         {
-            distance.text = "Distance: " + String.Format("{0:.##}", (transform.position.x - PackageDeliveryScript.realPackage.transform.position.x));
+            var distance_int = transform.position.x - PackageDeliveryScript.realPackage.transform.position.x;
+            distance.text = "Distance: " + String.Format("{0:.##}", distance_int<0?"0.00":distance_int);
         }
     }
 
     void Win()
     {
-        Debug.Log("Win");
+        Invoke("TimeStop", 0.05f);
+        Invoke("WinScreen", 0.3f);
+    }
+
+    void TimeStop()
+    {
+        PackageDeliveryScript.realPackage.rb.velocity = Vector3.zero;
+        PackageDeliveryScript.realPackage.rb.angularVelocity = 0;
+    }
+
+    void WinScreen()
+    {
+        winScreen.SetActive(true);
     }
 }
