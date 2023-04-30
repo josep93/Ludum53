@@ -68,7 +68,6 @@ public class DelivererScript : MonoBehaviour
         if (state == State.Delivering)
         {
             MusicScript.current.SelectTrack(0, true);
-            Invoke(nameof(ThrowRealPackage), MusicScript.current.GetLengthTrack(0));
         }
         if (state == State.Delivered)
         {
@@ -79,6 +78,7 @@ public class DelivererScript : MonoBehaviour
             sprite.sprite = deliveringSprites[0];
             PackageScript.current.DeliveryMovement(0);
             CameraPositionScript.current.DramaticPose();
+            Invoke(nameof(ThrowRealPackage),1.0f);
         }
     }
 
@@ -166,8 +166,7 @@ public class DelivererScript : MonoBehaviour
         realPackage.SetActive(true);
         fakePackage.SetActive(false);
 
-        realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
-
+        //realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
         // Lanzamos el paquete (float force, float angle)
         realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(force, angle);
     }
