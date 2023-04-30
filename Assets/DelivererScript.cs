@@ -37,6 +37,10 @@ public class DelivererScript : MonoBehaviour
     [SerializeField] GameObject realPackage;
     [SerializeField] GameObject fakePackage;
     [SerializeField] GameObject cinemachine;
+    [Tooltip("Fuerza de lanzamiento del paquete")]
+    [SerializeField] private float force;
+    [Tooltip("Ángulo de lanzamiento del paquete")]
+    [SerializeField] private float angle;
 
     // Start is called before the first frame update
     void Start()
@@ -165,7 +169,7 @@ public class DelivererScript : MonoBehaviour
         realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
 
         // Lanzamos el paquete (float force, float angle)
-        realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(60, 45);
+        realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(force, angle);
     }
 
 }

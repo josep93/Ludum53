@@ -14,7 +14,10 @@ public class ParalaxControllerScript : MonoBehaviour
     [SerializeField] private GameObject packageDelivery;
     [Tooltip("Aplica movimiento vertical dependiente de del movimiento del paquete")]
     [SerializeField] private bool hasVerticalMove = true;
-    
+    [Tooltip("Altura mínima para que se active el Paralax")]
+    [SerializeField] private float alturaMinima;
+    [Tooltip("Altura máxima para que se active el Paralax")]
+    [SerializeField] private float alturaMaxima;
 
     private void Start()
     {
@@ -23,7 +26,17 @@ public class ParalaxControllerScript : MonoBehaviour
 
     private void Update()
     {
-        transform.position = packageDelivery.transform.position;
+
+
+
+        if (hasVerticalMove)
+        {
+            transform.position = packageDelivery.transform.position;
+            return;
+        }
+
+        // Aplicar solo movimiento horizontal
+        transform.position = new Vector2(packageDelivery.transform.position.x, transform.position.y);
     }
 
     public void InitParalax()
