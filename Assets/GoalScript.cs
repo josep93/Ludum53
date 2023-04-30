@@ -54,8 +54,11 @@ public class GoalScript : MonoBehaviour
     }
     void StopObject()
     {
-        PackageDeliveryScript.realPackage.rb.velocity = Vector3.zero;
-        PackageDeliveryScript.realPackage.rb.angularVelocity = 0;
+        PackageDeliveryScript.realPackage.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        foreach (AudioSource audio in PackageSoundScript.current.audio)
+        {
+            audio.enabled = false;
+        }
     }
 
     void WinScreen()
