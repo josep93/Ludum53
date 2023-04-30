@@ -39,10 +39,33 @@ public class ParalaxControllerScript : MonoBehaviour
             transform.position = new Vector2(packageDelivery.transform.position.x, transform.position.y);
         }
 
-        if (packageDelivery.transform.position.y > alturaMinima && packageDelivery.transform.position.y < alturaMaxima)
+        if (!packageDelivery.activeInHierarchy)
         {
+            return;
+        }
 
+        float yPosition = packageDelivery.transform.position.y;
 
+        if (isWorking)
+        {
+            if (yPosition < alturaMinima)
+            {
+                isWorking = false;
+                StopParalax();
+            }
+
+            if (yPosition > alturaMaxima)
+            {
+                isWorking = false;
+                StopParalax();
+            }
+            return;
+        }
+
+        if (yPosition > alturaMinima && yPosition < alturaMaxima)
+        {
+            isWorking = true;
+            InitParalax();
         }
     }
 
