@@ -64,6 +64,7 @@ public class DelivererScript : MonoBehaviour
             MusicScript.current.SelectTrack(1, false);
             spriteState = 0;
             punchingSound.FinalPunch();
+            punchingSound.FinalShout();
             sprite.sprite = deliveringSprites[0];
             PackageScript.current.DeliveryMovement(0);
             CameraPositionScript.current.DramaticPose();
@@ -94,6 +95,10 @@ public class DelivererScript : MonoBehaviour
                     frameTime = 0;
                     ChangeSprite();
                     punchingSound.CallPunch();
+                    if (Random.Range(0, 4) == 3) {
+                        Debug.Log("Ahhh");
+                        punchingSound.CallShout();
+                    }
                 }
                 return;
             case State.Delivered:
@@ -134,6 +139,7 @@ public class DelivererScript : MonoBehaviour
     {
         PackageScript.current.DeliveryMovement(-2);
         sprite.sprite = standbySprites[1];
+        punchingSound.Shout();
         yield return new WaitForSeconds(0.2f);
         PackageScript.current.StateChange(PackageScript.State.Ready);
         powerBar.enabled = true;

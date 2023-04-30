@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PunchingSoundScript : MonoBehaviour
 {
-    [SerializeField] AudioClip[] punchSounds;
+    [SerializeField] AudioClip[] punchSounds,shoutSounds;
     [SerializeField] AudioClip lastPunchSound;
     AudioSource[] audios;
     int iterator=0;
@@ -30,6 +30,25 @@ public class PunchingSoundScript : MonoBehaviour
         iterator = iterator > punchSounds.Length-2 ? 0 : iterator;
     }
 
+    public void CallShout()
+    {
+        var audio = audios[iterator];
+        var selectedAudio = Random.Range(1, punchSounds.Length);
+        audio.clip = shoutSounds[selectedAudio];
+        audio.Play();
+        iterator++;
+        iterator = iterator > punchSounds.Length - 2 ? 0 : iterator;
+    }
+
+    public void Shout()
+    {
+        var audio = audios[iterator];
+        audio.clip = shoutSounds[0];
+        audio.Play();
+        iterator++;
+        iterator = iterator > shoutSounds.Length - 2 ? 0 : iterator;
+    }
+
     public void FinalPunch()
     {
         foreach (AudioSource audioInstance in audios){
@@ -37,6 +56,13 @@ public class PunchingSoundScript : MonoBehaviour
         }
         var audio = audios[0];
         audio.clip = lastPunchSound;
+        audio.Play();
+    }
+
+    public void FinalShout()
+    {
+        var audio = audios[1];
+        audio.clip = shoutSounds[0];
         audio.Play();
     }
 }
