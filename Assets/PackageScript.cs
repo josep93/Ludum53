@@ -52,6 +52,7 @@ public class PackageScript : MonoBehaviour
         basePosition = transform.position;
         sprite = GetComponent<SpriteRenderer>();
         powerBarMaxWidth = powerbar.sizeDelta.x;
+        powerbar.sizeDelta = new Vector2(0, powerbar.sizeDelta.y);
         inputActions = new InputSystem();
         StateChange(State.StandBy);
         pauseStatus = PauseStatus.Running;
@@ -121,11 +122,9 @@ public class PackageScript : MonoBehaviour
         powerText.text = "Power: " + power + "%";
         if (power <= 0)
         {
-            Debug.Log("A");
             DelivererScript.current.StateUpdate(DelivererScript.State.Prepared);
         } else if (power > 0 && power < 100)
         {
-            Debug.Log("B");
             DelivererScript.current.StateUpdate(DelivererScript.State.Delivering);
         }
     }

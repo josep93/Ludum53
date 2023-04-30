@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DelivererScript : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class DelivererScript : MonoBehaviour
     float frameTime = 0;
 
     [SerializeField]State state;
+    [SerializeField] Image powerBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,11 +51,17 @@ public class DelivererScript : MonoBehaviour
         this.state = state;
         if (state == State.Prepared)
         {
+            MusicScript.current.StopMusic();
             spriteState = 0;
             return;
         }
+        if (state == State.Delivering)
+        {
+            MusicScript.current.SelectTrack(0, true);
+        }
         if (state == State.Delivered)
         {
+            MusicScript.current.SelectTrack(1, false);
             spriteState = 0;
             punchingSound.FinalPunch();
             sprite.sprite = deliveringSprites[0];
@@ -106,6 +114,7 @@ public class DelivererScript : MonoBehaviour
                 sprite.sprite = standbySprites[spriteState];
                 return;
             case State.Prepared:
+                spriteState = spriteState > preparedSprites.Length-1 ? 0 : spriteState;
                 sprite.sprite = preparedSprites[spriteState];
                 PackageScript.current.DeliveryMovement(-1);
                 return;
@@ -127,6 +136,7 @@ public class DelivererScript : MonoBehaviour
         sprite.sprite = standbySprites[1];
         yield return new WaitForSeconds(0.2f);
         PackageScript.current.StateChange(PackageScript.State.Ready);
+        powerBar.enabled = true;
     }
 
 }
