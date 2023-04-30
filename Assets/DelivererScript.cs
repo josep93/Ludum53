@@ -21,7 +21,7 @@ public class DelivererScript : MonoBehaviour
 
     public static DelivererScript current;
 
-    [SerializeField]Sprite[] deliveringSprites,preparedSprites, standbySprites;
+    [SerializeField] Sprite[] deliveringSprites, preparedSprites, standbySprites;
     SpriteRenderer sprite;
     PauseStatus pauseStatus;
 
@@ -30,13 +30,15 @@ public class DelivererScript : MonoBehaviour
     int spriteState = 0;
     float frameTime = 0;
 
-    [SerializeField]State state;
+    [SerializeField] State state;
     [SerializeField] Image powerBar;
 
     [Header("Conexion")]
     [SerializeField] GameObject realPackage;
     [SerializeField] GameObject fakePackage;
     [SerializeField] GameObject cinemachine;
+    [SerializeField] GameObject debris;
+
     [Tooltip("Fuerza de lanzamiento del paquete")]
     [SerializeField] private float force;
     [Tooltip("Ángulo de lanzamiento del paquete")]
@@ -78,7 +80,7 @@ public class DelivererScript : MonoBehaviour
             sprite.sprite = deliveringSprites[0];
             PackageScript.current.DeliveryMovement(0);
             CameraPositionScript.current.DramaticPose();
-            Invoke(nameof(ThrowRealPackage),1.0f);
+            Invoke(nameof(ThrowRealPackage), 1.0f);
         }
     }
 
@@ -92,7 +94,7 @@ public class DelivererScript : MonoBehaviour
                 frameTime += Time.deltaTime;
                 if (frameTime >= 0.5)
                 {
-                    spriteState = spriteState==1?0:1;
+                    spriteState = spriteState == 1 ? 0 : 1;
                     frameTime = 0;
                 }
                 ChangeSprite();
@@ -101,12 +103,13 @@ public class DelivererScript : MonoBehaviour
                 frameTime += Time.deltaTime;
                 if (frameTime >= 0.1)
                 {
-                    var random = Random.Range(0,5);
+                    var random = Random.Range(0, 5);
                     spriteState = random >= spriteState ? random + 1 : random;
                     frameTime = 0;
                     ChangeSprite();
                     punchingSound.CallPunch();
-                    if (Random.Range(0, 4) == 3) {
+                    if (Random.Range(0, 4) == 3)
+                    {
                         punchingSound.CallShout();
                     }
                 }
@@ -129,7 +132,7 @@ public class DelivererScript : MonoBehaviour
                 sprite.sprite = standbySprites[spriteState];
                 return;
             case State.Prepared:
-                spriteState = spriteState > preparedSprites.Length-1 ? 0 : spriteState;
+                spriteState = spriteState > preparedSprites.Length - 1 ? 0 : spriteState;
                 sprite.sprite = preparedSprites[spriteState];
                 PackageScript.current.DeliveryMovement(-1);
                 return;
@@ -169,6 +172,8 @@ public class DelivererScript : MonoBehaviour
         //realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
         // Lanzamos el paquete (float force, float angle)
         realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(force, angle);
+        if (debris == null) return;
+        debris.SetActive(true);
     }
 
 }

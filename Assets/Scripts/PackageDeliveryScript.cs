@@ -7,7 +7,9 @@ public class PackageDeliveryScript : MonoBehaviour
     [SerializeField] private float force = 5;
     [SerializeField] private float angle = 45;
 
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] public Rigidbody2D rb;
+
+    public static PackageDeliveryScript realPackage;
 
     [Header("Paralax")]
     [SerializeField] private ParalaxControllerScript paralax;
@@ -47,6 +49,7 @@ public class PackageDeliveryScript : MonoBehaviour
 
     public void ThrowPackage(float force = 0, float angle = 0)
     {
+        realPackage = this;
         if (angle == 0)
         {
             angle = this.angle;
