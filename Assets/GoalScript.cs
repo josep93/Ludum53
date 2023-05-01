@@ -9,9 +9,10 @@ public class GoalScript : MonoBehaviour
 {
     [SerializeField] bool ultraHigh;
     [SerializeField] TextMeshProUGUI distance;
-    [SerializeField] GameObject winScreen, breakingIn;
+    [SerializeField] GameObject winScreen,winStamp, breakingIn;
     public static bool won = false;
     AudioSource audio;
+    [SerializeField]AudioClip stamp;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +65,7 @@ public class GoalScript : MonoBehaviour
             StopObject();
         }
         Invoke("WinScreen", 0.3f);
+        Invoke("WinStamp", 1.3f);
     }
 
     void BreakIn()
@@ -85,5 +87,12 @@ public class GoalScript : MonoBehaviour
     void WinScreen()
     {
         winScreen.SetActive(true);
+    }
+
+    void WinStamp()
+    {
+        winStamp.SetActive(true);
+        audio.clip = stamp;
+        audio.Play();
     }
 }
