@@ -35,6 +35,7 @@ public class BuildingGeneratorScript : MonoBehaviour
     {
         //coroutine = StartCoroutine(GenerateBuild());
         packageRb = package.GetComponent<Rigidbody2D>();
+        //StartGenerate();
     }
 
     // Update is called once per frame
@@ -47,7 +48,7 @@ public class BuildingGeneratorScript : MonoBehaviour
 
         transform.position = new Vector3(package.transform.position.x + offset, transform.position.y, transform.position.z);
 
-        if (packageRb.velocity.x < 10)
+        /*if (packageRb.velocity.x < 10)
         {
             StopGenerate();
             return;
@@ -56,7 +57,7 @@ public class BuildingGeneratorScript : MonoBehaviour
         if (package.transform.position.y < 100 && coroutine == null)
         {
             StartGenerate();
-        }
+        }*/
 
     }
 
