@@ -17,8 +17,10 @@ public class PackageVelocityScript : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] TextMeshProUGUI velocityText;
     [SerializeField] GameObject fakePackage;
+    [SerializeField] GameObject[] comic;
     SimulateGravityScript simulateGravity;
     byte flag = 0;
+    bool comicOn = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,11 @@ public class PackageVelocityScript : MonoBehaviour
             {
                 ChangeState(State.Delivering);
             }
+            if (rb.velocity.x < 30)
+            {
+                if(!comicOn)
+                StartCoroutine(StartComic());
+            }
         }
     }
 
@@ -65,11 +72,25 @@ public class PackageVelocityScript : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
         simulateGravity.enabled = false;
+        foreach (GameObject comicStripe in comic)
+        {
+            comicStripe.SetActive(false);
+        }
         Invoke("EnoughSpeed", 1f);
     }
 
     void EnoughSpeed()
     {
         flag = 2;
+    }
+
+    IEnumerator StartComic()
+    {
+        comicOn = true;
+        comic[0].SetActive(true);
+        yield return new WaitForSeconds(1);
+        comic[1].SetActive(true);
+        yield return new WaitForSeconds(1);
+        comic[2].SetActive(true);
     }
 }

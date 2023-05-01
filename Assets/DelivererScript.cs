@@ -194,8 +194,10 @@ public class DelivererScript : MonoBehaviour
         }
 
         BuildingGeneratorScript.instance.StartGenerate();
-        ObstacleControllerScript.instance.StartObstacle();
-        BackgroundColorCamara.instance.ChangeColorCamera();
+        if (ObstacleControllerScript.instance != null)
+            ObstacleControllerScript.instance.StartObstacle();
+        if (BackgroundColorCamara.instance != null)
+            BackgroundColorCamara.instance.ChangeColorCamera();
         //realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
         // Lanzamos el paquete (float force, float angle)
         realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(force, angle, rotation);
