@@ -10,6 +10,8 @@ public class AirPackageScript : MonoBehaviour
     Rigidbody2D rb;
     Color parryColor;
     SpriteRenderer spriteRenderer;
+
+    [SerializeField]GameObject losePanel;
     enum State : byte
     {
         Flying,
@@ -79,6 +81,21 @@ public class AirPackageScript : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Ground")
+        {
+            Invoke("Lose",1);
+        }
+    }
+
+    private void Lose()
+    {
+        if (!GoalScript.won)
+        {
+            losePanel.SetActive(true);
+        }
+    }
     private void Collision()
     {
         if (state == State.Parrying)

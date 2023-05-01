@@ -10,7 +10,7 @@ public class GoalScript : MonoBehaviour
     [SerializeField] bool ultraHigh;
     [SerializeField] TextMeshProUGUI distance;
     [SerializeField] GameObject winScreen, breakingIn;
-    bool won = false;
+    public static bool won = false;
     AudioSource audio;
     // Start is called before the first frame update
     void Start()
