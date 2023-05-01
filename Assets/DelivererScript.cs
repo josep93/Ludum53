@@ -189,8 +189,11 @@ public class DelivererScript : MonoBehaviour
 
         MusicScript.current.SelectTrack(2, true);
 
-        obstacleController.SetActive(true);
-        obstacleController.GetComponent<ObstacleControllerScript>().StartObstacle();
+        if (ObstacleControllerScript.instance != null)
+        {
+            obstacleController.SetActive(true);
+            obstacleController.GetComponent<ObstacleControllerScript>().StartObstacle();
+        }
 
         BuildingGeneratorScript.instance.StartGenerate();
         if (ObstacleControllerScript.instance != null)
