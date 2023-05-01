@@ -6,13 +6,13 @@ using UnityEngine.InputSystem;
 public class AirPackageScript : MonoBehaviour
 {
     InputSystem inputActions;
-    State state=State.Flying;
+    public State state=State.Flying;
     Rigidbody2D rb;
     Color parryColor;
     SpriteRenderer spriteRenderer;
 
     [SerializeField]GameObject losePanel;
-    enum State : byte
+    public enum State : byte
     {
         Flying,
         Parrying,
@@ -32,11 +32,7 @@ public class AirPackageScript : MonoBehaviour
         inputActions.Air.Parry.performed += Parry;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     void Parry(InputAction.CallbackContext ctx)
     {
         if (state != State.Flying) return;
@@ -72,6 +68,7 @@ public class AirPackageScript : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezePositionX;
         rb.velocity = Vector2.down*50;
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

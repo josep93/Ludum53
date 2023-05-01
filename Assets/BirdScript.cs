@@ -51,8 +51,10 @@ public class BirdScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Package"))
         {
-            if (audio.isPlaying) return;
+            if (audio.isPlaying) { return; }
+            if (collision.gameObject.GetComponent<AirPackageScript>().state == AirPackageScript.State.Parrying) { return; }
             audio.Play();
         }
     }
+
 }

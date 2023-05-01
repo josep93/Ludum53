@@ -47,6 +47,7 @@ public class DelivererScript : MonoBehaviour
     [SerializeField] private float angle;
     [Tooltip("Velocidad Angular del paquete")]
     [SerializeField] private float rotation;
+    [SerializeField] private GameObject obstacleController;
 
     // Start is called before the first frame update
     void Start()
@@ -188,10 +189,8 @@ public class DelivererScript : MonoBehaviour
 
         MusicScript.current.SelectTrack(2, true);
 
-        if (ObstacleControllerScript.instance != null)
-        {
-            ObstacleControllerScript.instance.StartObstacle();
-        }
+        obstacleController.SetActive(true);
+        obstacleController.GetComponent<ObstacleControllerScript>().StartObstacle();
 
         BuildingGeneratorScript.instance.StartGenerate();
         if (ObstacleControllerScript.instance != null)

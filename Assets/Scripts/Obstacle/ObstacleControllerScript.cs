@@ -22,7 +22,7 @@ public class ObstacleControllerScript : MonoBehaviour
 
     private void OnEnable()
     {
-        StartObstacle();
+        //StartObstacle();
     }
 
 
