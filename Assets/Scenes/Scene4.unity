@@ -2232,11 +2232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6706013748010863430, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
       propertyPath: alturaMaxima
-      value: 1500
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 6706013748010863430, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
       propertyPath: alturaMinima
-      value: 0
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 6706013748010863430, guid: 1ec32d5e2af029f48a83ec722111962a, type: 3}
       propertyPath: timeGenerator
@@ -4528,6 +4528,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1aae9ceb56ec645a27890b906fd772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstaclesAir: []
+  obstaclesGround: []
+  distance: 13
+  timeGenerator: 5
+  obstacleGroundGenerator: {fileID: 0}
+  packageDelivery: {fileID: 0}
 --- !u!1 &1698985663
 GameObject:
   m_ObjectHideFlags: 0
