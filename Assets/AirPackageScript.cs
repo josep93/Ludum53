@@ -10,6 +10,7 @@ public class AirPackageScript : MonoBehaviour
     Rigidbody2D rb;
     Color parryColor;
     SpriteRenderer spriteRenderer;
+    AudioSource audio;
 
     [SerializeField]GameObject losePanel;
     public enum State : byte
@@ -23,6 +24,7 @@ public class AirPackageScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        audio = GetComponents<AudioSource>()[1]; 
         spriteRenderer = GetComponent<SpriteRenderer>();
         ColorUtility.TryParseHtmlString("#FFBB84", out parryColor);
         rb = GetComponent<Rigidbody2D>();
@@ -97,6 +99,7 @@ public class AirPackageScript : MonoBehaviour
     {
         if (state == State.Parrying)
         {
+            audio.Play();
             rb.AddForce(new Vector2(1,1) * 250);
             return;
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PackageSoundScript : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class PackageSoundScript : MonoBehaviour
         if (collision.collider.tag == "Ground")
         {
             StartCollision();
-            StartRoll();
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+                StartRoll();
         }
 
 
@@ -34,7 +36,8 @@ public class PackageSoundScript : MonoBehaviour
     {
         if (collision.collider.tag == "Ground")
         {
-            StopRoll();
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+                StopRoll();
         }
     }
 
