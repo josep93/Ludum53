@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ParalaxSpawnerScript : MonoBehaviour
 {
-
     [SerializeField] private GameObject packageDelivery;
     [SerializeField] private float distance;
 

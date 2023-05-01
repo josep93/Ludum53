@@ -21,6 +21,7 @@ public class ParalaxControllerScript : MonoBehaviour
     [Tooltip("Altura máxima para que se active el Paralax")]
     [SerializeField] private float alturaMaxima;
 
+    [SerializeField] bool goingUp;
     private void Start()
     {
         //InitParalax();
@@ -45,8 +46,25 @@ public class ParalaxControllerScript : MonoBehaviour
         }
 
         float yPosition = packageDelivery.transform.position.y;
+        float xPosition = packageDelivery.transform.position.x;
 
-        if (isWorking)
+        if (isWorking && goingUp)
+        {
+            if (xPosition < alturaMinima)
+            {
+                isWorking = false;
+                StopParalax();
+            }
+
+            if (xPosition > alturaMaxima)
+            {
+                isWorking = false;
+                StopParalax();
+            }
+            return;
+        }
+
+        if (isWorking && !goingUp)
         {
             if (yPosition < alturaMinima)
             {
@@ -62,7 +80,13 @@ public class ParalaxControllerScript : MonoBehaviour
             return;
         }
 
-        if (yPosition > alturaMinima && yPosition < alturaMaxima)
+        if (xPosition > alturaMinima && xPosition < alturaMaxima && goingUp)
+        {
+            isWorking = true;
+            InitParalax();
+        }
+
+        if (yPosition > alturaMinima && yPosition < alturaMaxima && !goingUp)
         {
             isWorking = true;
             InitParalax();

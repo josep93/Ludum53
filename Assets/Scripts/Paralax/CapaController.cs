@@ -20,6 +20,9 @@ public class CapaController : MonoBehaviour
     [SerializeField] private float offsetTimeGenerator = 1f;
     [SerializeField] private bool hasVerticalMove = false;
 
+
+    [SerializeField] bool goingUp = false;
+
     private Sprite[] sprites;
     private float speed;
     private float timeGenerator;
@@ -84,6 +87,10 @@ public class CapaController : MonoBehaviour
                 paralaxSpawner.transform.position.x + Random.Range(-offsetPosition.x, offsetPosition.x), 
                 paralaxSpawner.transform.position.y + Random.Range(-offsetPosition.y, offsetPosition.y));
             c.transform.localScale = c.transform.localScale * (scaleModification / 100);
+            if (goingUp)
+            {
+                c.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
+            }
 
             ParalaxObjectScript paralaxObjectScript = c.GetComponent<ParalaxObjectScript>();    
             paralaxObjectScript.SetController(this);
