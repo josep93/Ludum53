@@ -59,6 +59,13 @@ public class PackageScript : MonoBehaviour
         EventsScript.current.pauseAction += OnPause;
     }
 
+    private void OnDestroy()
+    {
+        EventsScript.current.pauseAction -= OnPause;
+        if (this.state == State.StandBy) inputActions.Ready.Throw.performed -= StartDelivery;
+        if (this.state == State.Ready) inputActions.Ready.Throw.performed -= Throw;
+    }
+
     // Update is called once per frame
     void Update()
     {

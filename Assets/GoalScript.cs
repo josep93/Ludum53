@@ -19,6 +19,7 @@ public class GoalScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        won = false;
         audio = GetComponent<AudioSource>();
         input = new();
     }
@@ -114,7 +115,7 @@ public class GoalScript : MonoBehaviour
         audio.Play();
         
         input.Next.NextScene.performed += _ => NextScene();
-        input.Enable();
+        input.Next.NextScene.Enable();
     }
 
     private void NextScene()
@@ -122,6 +123,8 @@ public class GoalScript : MonoBehaviour
         int cScene = SceneManager.GetActiveScene().buildIndex;
         cScene++;
         if (cScene >= SceneManager.sceneCountInBuildSettings) { cScene = 0; }
+        input.Next.NextScene.performed -= _ => NextScene();
+        input.Next.NextScene.Disable();
         SceneManager.LoadScene(cScene);
     }
 

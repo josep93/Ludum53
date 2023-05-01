@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class AirPackageScript : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class AirPackageScript : MonoBehaviour
     Color parryColor;
     SpriteRenderer spriteRenderer;
     AudioSource audio;
+    private InputSystem input;
 
     [SerializeField]GameObject losePanel;
     public enum State : byte
@@ -24,6 +26,7 @@ public class AirPackageScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        input = new();
         audio = GetComponents<AudioSource>()[1]; 
         spriteRenderer = GetComponent<SpriteRenderer>();
         ColorUtility.TryParseHtmlString("#FFBB84", out parryColor);
@@ -93,6 +96,8 @@ public class AirPackageScript : MonoBehaviour
         if (!GoalScript.won)
         {
             losePanel.SetActive(true);
+            input.Next.NextScene.performed += _ => SameScene();
+            input.Next.NextScene.Enable();
         }
     }
     private void Collision()
@@ -107,5 +112,15 @@ public class AirPackageScript : MonoBehaviour
         {
             rb.AddForce((new Vector2(-50, 1)).normalized * 250);
         }
+    }
+
+
+    private void SameScene()
+    {
+        int cScene = SceneManager.GetActiveScene().buildIndex;
+        if (cScene >= SceneManager.sceneCountInBuildSettings) { cScene = 0; }
+        input.Next.NextScene.performed -= _ => SameScene();
+        input.Next.NextScene.Disable();
+        SceneManager.LoadScene(cScene);
     }
 }

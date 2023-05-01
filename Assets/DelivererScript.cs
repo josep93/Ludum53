@@ -62,6 +62,10 @@ public class DelivererScript : MonoBehaviour
         EventsScript.current.pauseAction += OnPause;
     }
 
+    private void OnDestroy()
+    {
+        EventsScript.current.pauseAction -= OnPause;
+    }
     public void StateUpdate(State state)
     {
         if (state == State.Standby)

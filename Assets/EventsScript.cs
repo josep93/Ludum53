@@ -24,6 +24,10 @@ public class EventsScript : MonoBehaviour
         inputActions.Pause.Pause.performed += PausePressed;
     }
 
+    private void OnDestroy()
+    {
+        inputActions.Pause.Pause.performed -= PausePressed;
+    }
     private void OnPause(bool pause)
     {
         paused = pause;
