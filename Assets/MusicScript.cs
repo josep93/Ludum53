@@ -44,17 +44,16 @@ public class MusicScript : MonoBehaviour
     {
         audioSource = GetComponents<AudioSource>()[0];
         audioSource2 = GetComponents<AudioSource>()[1];
+        StopMusic();
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            audioSource.clip = menuClip;
-            audioSource.Play();
+            SelectMenu();
             audioSource.volume = 0.6f;
         }
         else
         {
             audioSource.volume = 1f;
         }
-        StopMusic();
     }
 
     public void StopMusic()
@@ -81,6 +80,8 @@ public class MusicScript : MonoBehaviour
 
     public void SelectMenu()
     {
+        Debug.Log(menuClip.name);
+        audioSource.enabled = true;
         audioSource.clip = menuClip;
         audioSource.loop = true;
         audioSource.Play();
