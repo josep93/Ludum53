@@ -16,7 +16,6 @@ public class SkyClarityScript : MonoBehaviour
     void Update()
     {
         var alpha = (4000-package.position.x )/ 3000;
-        Debug.Log(new Vector2(alpha, 4000 - package.position.x));
         var color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, alpha);
         sprite.color = color;
     }
