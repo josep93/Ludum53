@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DelivererScript : MonoBehaviour
@@ -194,18 +195,16 @@ public class DelivererScript : MonoBehaviour
 
         MusicScript.current.SelectTrack(2, true);
 
-        if (ObstacleControllerScript.instance != null)
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             obstacleController.SetActive(true);
             obstacleController.GetComponent<ObstacleControllerScript>().StartObstacle();
         }
 
         BuildingGeneratorScript.instance.StartGenerate();
-        if (ObstacleControllerScript.instance != null)
-            ObstacleControllerScript.instance.StartObstacle();
         if (BackgroundColorCamara.instance != null)
             BackgroundColorCamara.instance.ChangeColorCamera();
-        //realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
+
         // Lanzamos el paquete (float force, float angle)
         realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(force, angle, rotation);
         if (debris == null) return;

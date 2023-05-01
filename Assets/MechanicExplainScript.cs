@@ -32,6 +32,6 @@ public class MechanicExplainScript : MonoBehaviour
         MusicScript.current.SetMusicLevel(1f);
         prompt.enabled = false;
         obstacleController.SetActive(true);
-        //ObstacleControllerScript.instance.StartObstacle();
+        ObstacleControllerScript.instance.StartObstacle();
     }
 }

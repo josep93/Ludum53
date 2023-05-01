@@ -55,13 +55,7 @@ public class ObstacleGeneratorScript : MonoBehaviour
             GameObject c;
 
             // Esta cerca del suelo
-            if (packageDelivery.transform.position.y < 50)
-            {
-                continue;
-                /*c = Instantiate(obstaclesGround[Random.Range(0, obstaclesGround.Length)]);
-                c.transform.position = transform.position;
-                continue;*/
-            }
+            if (packageDelivery.transform.position.y < 50) { continue; }
 
             c = Instantiate(obstaclesAir[Random.Range(0, obstaclesAir.Length)]);
             c.transform.position = transform.position;

@@ -5027,7 +5027,7 @@ MonoBehaviour:
   obstaclesGround:
   - {fileID: 1410972580372732260, guid: 8c3602f4f4092ef4284959e928692433, type: 3}
   distance: 25
-  timeGenerator: 4
+  timeGenerator: 2
   obstacleGroundGenerator: {fileID: 0}
   packageDelivery: {fileID: 0}
 --- !u!1 &1698985663
