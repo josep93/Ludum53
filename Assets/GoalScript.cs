@@ -57,6 +57,12 @@ public class GoalScript : MonoBehaviour
             BreakIn();
             Invoke("StopObject", 0.05f);
         }
+        else if (ultraHigh)
+        {
+            audio.Play();
+            breakingIn.SetActive(true);
+            StopObject();
+        }
         Invoke("WinScreen", 0.3f);
     }
 
@@ -69,6 +75,7 @@ public class GoalScript : MonoBehaviour
     void StopObject()
     {
         PackageDeliveryScript.realPackage.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        PackageDeliveryScript.realPackage.rb.rotation = 0;
         foreach (AudioSource audio in PackageSoundScript.current.audio)
         {
             audio.enabled = false;
