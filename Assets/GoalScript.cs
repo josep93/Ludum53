@@ -13,10 +13,14 @@ public class GoalScript : MonoBehaviour
     public static bool won = false;
     AudioSource audio;
     [SerializeField]AudioClip stamp;
+
+    private InputSystem input;
+
     // Start is called before the first frame update
     void Start()
     {
         audio = GetComponent<AudioSource>();
+        input = new();
     }
 
     // Update is called once per frame
@@ -108,5 +112,17 @@ public class GoalScript : MonoBehaviour
         winStamp.SetActive(true);
         audio.clip = stamp;
         audio.Play();
+        
+        input.Next.NextScene.performed += _ => NextScene();
+        input.Enable();
     }
+
+    private void NextScene()
+    {
+        int cScene = SceneManager.GetActiveScene().buildIndex;
+        cScene++;
+        if (cScene >= SceneManager.sceneCountInBuildSettings) { cScene = 0; }
+        SceneManager.LoadScene(cScene);
+    }
+
 }

@@ -170,6 +170,34 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Next"",
+            ""id"": ""1ad2d9c2-9ef7-425d-9be7-27bcd340340f"",
+            ""actions"": [
+                {
+                    ""name"": ""NextScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""220e442f-2a19-4bab-a411-d0fe70a3b736"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ce48c8f4-65ae-493d-92cb-0aaffbaf85ee"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -184,6 +212,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Air = asset.FindActionMap("Air", throwIfNotFound: true);
         m_Air_Parry = m_Air.FindAction("Parry", throwIfNotFound: true);
         m_Air_Stop = m_Air.FindAction("Stop", throwIfNotFound: true);
+        // Next
+        m_Next = asset.FindActionMap("Next", throwIfNotFound: true);
+        m_Next_NextScene = m_Next.FindAction("NextScene", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -387,6 +418,52 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
     }
     public AirActions @Air => new AirActions(this);
+
+    // Next
+    private readonly InputActionMap m_Next;
+    private List<INextActions> m_NextActionsCallbackInterfaces = new List<INextActions>();
+    private readonly InputAction m_Next_NextScene;
+    public struct NextActions
+    {
+        private @InputSystem m_Wrapper;
+        public NextActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @NextScene => m_Wrapper.m_Next_NextScene;
+        public InputActionMap Get() { return m_Wrapper.m_Next; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(NextActions set) { return set.Get(); }
+        public void AddCallbacks(INextActions instance)
+        {
+            if (instance == null || m_Wrapper.m_NextActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_NextActionsCallbackInterfaces.Add(instance);
+            @NextScene.started += instance.OnNextScene;
+            @NextScene.performed += instance.OnNextScene;
+            @NextScene.canceled += instance.OnNextScene;
+        }
+
+        private void UnregisterCallbacks(INextActions instance)
+        {
+            @NextScene.started -= instance.OnNextScene;
+            @NextScene.performed -= instance.OnNextScene;
+            @NextScene.canceled -= instance.OnNextScene;
+        }
+
+        public void RemoveCallbacks(INextActions instance)
+        {
+            if (m_Wrapper.m_NextActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(INextActions instance)
+        {
+            foreach (var item in m_Wrapper.m_NextActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_NextActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public NextActions @Next => new NextActions(this);
     public interface IReadyActions
     {
         void OnThrow(InputAction.CallbackContext context);
@@ -399,5 +476,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     {
         void OnParry(InputAction.CallbackContext context);
         void OnStop(InputAction.CallbackContext context);
+    }
+    public interface INextActions
+    {
+        void OnNextScene(InputAction.CallbackContext context);
     }
 }
