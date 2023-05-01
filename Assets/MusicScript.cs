@@ -24,6 +24,14 @@ public class MusicScript : MonoBehaviour
         {
             SelectMenu();
         }
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            audioSource.volume = 0.6f;
+        }
+        else
+        {
+            audioSource.volume = 1f;
+        }
     }
 
     public void SetMusicLevel(float level)
@@ -36,6 +44,14 @@ public class MusicScript : MonoBehaviour
     {
         audioSource = GetComponents<AudioSource>()[0];
         audioSource2 = GetComponents<AudioSource>()[1];
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            audioSource.volume = 0.6f;
+        }
+        else
+        {
+            audioSource.volume = 1f;
+        }
         StopMusic();
     }
 
