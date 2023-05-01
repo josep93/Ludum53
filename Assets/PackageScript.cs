@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class PackageScript : MonoBehaviour
 {
@@ -61,9 +62,15 @@ public class PackageScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventsScript.current.pauseAction -= OnPause;
-        if (this.state == State.StandBy) inputActions.Ready.Throw.performed -= StartDelivery;
-        if (this.state == State.Ready) inputActions.Ready.Throw.performed -= Throw;
+        try
+        {
+            EventsScript.current.pauseAction -= OnPause;
+            if (this.state == State.StandBy) inputActions.Ready.Throw.performed -= StartDelivery;
+            if (this.state == State.Ready) inputActions.Ready.Throw.performed -= Throw;
+
+        }
+        catch (Exception e) { }
+        
     }
 
     // Update is called once per frame
@@ -185,7 +192,7 @@ public class PackageScript : MonoBehaviour
             return;
         }
         transform.localPosition = packagePosition[position];
-        transform.rotation = Quaternion.Euler(new Vector3(0,0,Random.Range(-50,50)));
+        transform.rotation = Quaternion.Euler(new Vector3(0,0, UnityEngine.Random.Range(-50,50)));
         sprite.sortingOrder = up[position] ? 1 : -1;
     }
 }

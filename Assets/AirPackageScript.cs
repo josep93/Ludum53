@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,10 +38,24 @@ public class AirPackageScript : MonoBehaviour
         inputActions.Air.Parry.performed += Parry;
     }
 
-    
+
+    private void OnDestroy()
+    {
+        try
+        {
+            inputActions.Air.Stop.performed -= ForceStop;
+            inputActions.Air.Parry.performed -= Parry;
+            inputActions.Air.Disable();
+        }
+        catch (Exception e)
+        {}
+        
+    }
+
     void Parry(InputAction.CallbackContext ctx)
     {
         if (state != State.Flying) return;
+        if (spriteRenderer == null) { spriteRenderer = GetComponent<SpriteRenderer>(); }
         spriteRenderer.color = parryColor;
         state = State.Parrying;
         Invoke("ParryFinish",0.5f);
