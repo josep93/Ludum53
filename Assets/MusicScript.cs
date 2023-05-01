@@ -46,6 +46,8 @@ public class MusicScript : MonoBehaviour
         audioSource2 = GetComponents<AudioSource>()[1];
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
+            audioSource.clip = menuClip;
+            audioSource.Play();
             audioSource.volume = 0.6f;
         }
         else
