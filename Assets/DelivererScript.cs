@@ -43,6 +43,8 @@ public class DelivererScript : MonoBehaviour
     [SerializeField] private float force;
     [Tooltip("Ángulo de lanzamiento del paquete")]
     [SerializeField] private float angle;
+    [Tooltip("Velocidad Angular del paquete")]
+    [SerializeField] private float rotation;
 
     // Start is called before the first frame update
     void Start()
@@ -182,7 +184,7 @@ public class DelivererScript : MonoBehaviour
 
         //realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
         // Lanzamos el paquete (float force, float angle)
-        realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(force, angle);
+        realPackage.GetComponent<PackageDeliveryScript>().ThrowPackage(force, angle, rotation);
         if (debris == null) return;
         debris.SetActive(true);
     }

@@ -26,6 +26,12 @@ public class MusicScript : MonoBehaviour
         }
     }
 
+    public void SetMusicLevel(float level)
+    {
+        audioSource.volume = level;
+        audioSource2.volume = level;
+    }
+
     private void OnLevelWasLoaded(int level)
     {
         StopMusic();

@@ -47,7 +47,7 @@ public class PackageDeliveryScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void ThrowPackage(float force = 0, float angle = 0)
+    public void ThrowPackage(float force = 0, float angle = 0, float rotation=0)
     {
         realPackage = this;
         if (angle == 0)
@@ -61,7 +61,7 @@ public class PackageDeliveryScript : MonoBehaviour
 
         Vector2 dir = (Vector2)(Quaternion.Euler(0, 0, angle) * Vector2.right);
         rb.AddForce(dir * force, ForceMode2D.Impulse);
-        rb.AddTorque(360f);
+        rb.AddTorque(rotation);
         ShutDownPowerBar();
         ActiveDistance();
     }
