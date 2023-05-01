@@ -180,7 +180,12 @@ public class DelivererScript : MonoBehaviour
 
         MusicScript.current.SelectTrack(2, true);
 
-        ObstacleControllerScript.instance.StartObstacle();
+        if (ObstacleControllerScript.instance != null)
+        {
+            ObstacleControllerScript.instance.StartObstacle();
+        }
+
+        BuildingGeneratorScript.instance.StartGenerate();
 
         //realPackage.transform.SetPositionAndRotation(fakePackage.transform.position, fakePackage.transform.rotation);
         // Lanzamos el paquete (float force, float angle)

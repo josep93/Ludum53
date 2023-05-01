@@ -8,6 +8,7 @@ public class MechanicExplainScript : MonoBehaviour
 {
     InputSystem inputActions;
     [SerializeField] TextMeshProUGUI prompt;
+    [SerializeField] private GameObject obstacleController;
     private void Start()
     {
         inputActions = new InputSystem();
@@ -30,5 +31,7 @@ public class MechanicExplainScript : MonoBehaviour
         inputActions.Air.Parry.performed -= EndTimeStop;
         MusicScript.current.SetMusicLevel(1f);
         prompt.enabled = false;
+        obstacleController.SetActive(true);
+        //ObstacleControllerScript.instance.StartObstacle();
     }
 }

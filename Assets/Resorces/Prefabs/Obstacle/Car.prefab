@@ -118,7 +118,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.24407196, y: 0}
@@ -150,3 +150,5 @@ MonoBehaviour:
   - {fileID: 10923489, guid: 92f6a57811da7cb48b5f4c2c84b45b0e, type: 3}
   - {fileID: 1393226556, guid: 92f6a57811da7cb48b5f4c2c84b45b0e, type: 3}
   - {fileID: -1171248299, guid: 92f6a57811da7cb48b5f4c2c84b45b0e, type: 3}
+  tutorial: 0
+  speedFollow: 75

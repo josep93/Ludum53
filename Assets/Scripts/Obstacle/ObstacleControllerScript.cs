@@ -20,10 +20,16 @@ public class ObstacleControllerScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void OnEnable()
+    {
+        StartObstacle();
+    }
+
 
     public void StartObstacle()
     {
         packageDelivery = GameObject.FindGameObjectWithTag("Package");
+        GetComponentInChildren<ObstacleGeneratorScript>().StartObstacle();
     }
 
     // Update is called once per frame
