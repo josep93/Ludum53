@@ -6922,7 +6922,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6539360917416014900, guid: 595013cd6c832eb4b8b68de0ebab12ac, type: 3}
       propertyPath: clips.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6539360917416014900, guid: 595013cd6c832eb4b8b68de0ebab12ac, type: 3}
       propertyPath: clips.Array.data[2]
