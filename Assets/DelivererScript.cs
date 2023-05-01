@@ -56,13 +56,18 @@ public class DelivererScript : MonoBehaviour
         punchingSound = GetComponent<PunchingSoundScript>();
         sprite = GetComponent<SpriteRenderer>();
         state = State.Standby;
+        MusicScript.current.SelectTrack(3, true);
         pauseStatus = PauseStatus.Running;
         EventsScript.current.pauseAction += OnPause;
     }
 
     public void StateUpdate(State state)
     {
-        if (state == State.Standby) return;
+        if (state == State.Standby)
+        {
+            MusicScript.current.SelectTrack(3, true);
+            return;
+        }
         if (this.state == state) return;
         frameTime = 0;
         this.state = state;
