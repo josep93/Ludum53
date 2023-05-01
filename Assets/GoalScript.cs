@@ -64,6 +64,11 @@ public class GoalScript : MonoBehaviour
             breakingIn.SetActive(true);
             StopObject();
         }
+        else
+        {
+
+            BreakInHorizontal();
+        }
         Invoke("WinScreen", 0.3f);
         Invoke("WinStamp", 1.3f);
     }
@@ -74,6 +79,15 @@ public class GoalScript : MonoBehaviour
         breakingIn.transform.position = new Vector3(breakingIn.transform.position.x, PackageDeliveryScript.realPackage.transform.position.y, breakingIn.transform.position.z);
         audio.Play();
     }
+
+    void BreakInHorizontal()
+    {
+        breakingIn.SetActive(true);
+        breakingIn.transform.position = new Vector3(PackageDeliveryScript.realPackage.transform.position.x, breakingIn.transform.position.y, breakingIn.transform.position.z);
+        audio.Play();
+        PackageDeliveryScript.realPackage.gameObject.SetActive(false);
+    }
+
     void StopObject()
     {
         PackageDeliveryScript.realPackage.rb.constraints = RigidbodyConstraints2D.FreezeAll;
