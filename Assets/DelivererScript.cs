@@ -196,7 +196,9 @@ public class DelivererScript : MonoBehaviour
         // Ativamos el paquete real y desactivamos el falso
         realPackage.SetActive(true);
         fakePackage.SetActive(false);
-
+        if(SceneManager.GetActiveScene().buildIndex == 4)
+        MusicScript.current.SelectTrack(4, true);
+        else
         MusicScript.current.SelectTrack(2, true);
 
         if (SceneManager.GetActiveScene().buildIndex == 3)

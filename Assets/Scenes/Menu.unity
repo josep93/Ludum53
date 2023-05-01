@@ -936,6 +936,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6539360917416014900, guid: 595013cd6c832eb4b8b68de0ebab12ac, type: 3}
+      propertyPath: clips.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539360917416014900, guid: 595013cd6c832eb4b8b68de0ebab12ac, type: 3}
+      propertyPath: clips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 63e2f796a78a6d342b8ec3c4962c74c8, type: 3}
     - target: {fileID: 6539360917416014902, guid: 595013cd6c832eb4b8b68de0ebab12ac, type: 3}
       propertyPath: m_Name
       value: MusicManager
