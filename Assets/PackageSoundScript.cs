@@ -21,6 +21,13 @@ public class PackageSoundScript : MonoBehaviour
             StartCollision();
             StartRoll();
         }
+
+
+        if (collision.gameObject.name.Equals("StupidCar"))
+        {
+            if (audio[2].isPlaying) return;
+            audio[2].Play();
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
