@@ -48,11 +48,11 @@ public class BuildingGeneratorScript : MonoBehaviour
 
         transform.position = new Vector3(package.transform.position.x + offset, transform.position.y, transform.position.z);
 
-        /*if (packageRb.velocity.x < 10)
+        if (packageRb.velocity.x < 10)
         {
             StopGenerate();
             return;
-        }
+        }/*
 
         if (package.transform.position.y < 100 && coroutine == null)
         {
