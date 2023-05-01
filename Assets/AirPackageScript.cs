@@ -15,6 +15,8 @@ public class AirPackageScript : MonoBehaviour
     AudioSource audio;
     private InputSystem input;
 
+    public static bool lost = false; 
+
     [SerializeField]GameObject losePanel;
     public enum State : byte
     {
@@ -27,6 +29,7 @@ public class AirPackageScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        lost = false;
         input = new();
         audio = GetComponents<AudioSource>()[1]; 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -110,6 +113,7 @@ public class AirPackageScript : MonoBehaviour
     {
         if (!GoalScript.won)
         {
+            lost = true;
             losePanel.SetActive(true);
             input.Next.NextScene.performed += _ => SameScene();
             input.Next.NextScene.Enable();

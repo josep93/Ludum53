@@ -57,25 +57,28 @@ public class GoalScript : MonoBehaviour
 
     void Win()
     {
-        won = true;
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        if (!AirPackageScript.lost)
         {
-            BreakIn();
-            Invoke("StopObject", 0.05f);
-        }
-        else if (ultraHigh)
-        {
-            audio.Play();
-            breakingIn.SetActive(true);
-            StopObject();
-        }
-        else
-        {
+            won = true;
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                BreakIn();
+                Invoke("StopObject", 0.05f);
+            }
+            else if (ultraHigh)
+            {
+                audio.Play();
+                breakingIn.SetActive(true);
+                StopObject();
+            }
+            else
+            {
 
-            BreakInHorizontal();
+                BreakInHorizontal();
+            }
+            Invoke("WinScreen", 0.3f);
+            Invoke("WinStamp", 1.3f);
         }
-        Invoke("WinScreen", 0.3f);
-        Invoke("WinStamp", 1.3f);
     }
 
     void BreakIn()
