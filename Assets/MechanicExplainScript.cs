@@ -9,14 +9,17 @@ public class MechanicExplainScript : MonoBehaviour
     InputSystem inputActions;
     [SerializeField] TextMeshProUGUI prompt;
     [SerializeField] private GameObject obstacleController;
+    private bool explained = false;
     private void Start()
     {
         inputActions = new InputSystem();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (explained) return;
         if (collision.tag == "Package")
         {
+            explained = true;
             Time.timeScale = 0;
             inputActions.Air.Enable();
             inputActions.Air.Parry.performed += EndTimeStop;

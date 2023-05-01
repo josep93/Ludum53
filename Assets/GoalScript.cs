@@ -41,6 +41,27 @@ public class GoalScript : MonoBehaviour
         if (distance.IsActive())
         {
             var distance_int = transform.position.x - PackageDeliveryScript.realPackage.transform.position.x;
+
+            if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                if (distance_int > 1000)
+                {
+                    distance.color = Color.white;
+                }
+                if (distance_int < 1000)
+                {
+                    distance.color = Color.yellow;
+                }
+                if (distance_int < 15)
+                {
+                    distance.color = Color.green;
+                }
+                if (distance_int < -15)
+                {
+                    distance.color = Color.red;
+                }
+            }
+
             if (ultraHigh) distance.text = "Distance: " + String.Format("{0:.##}", distance_int < 0 ? "0.00" : distance_int);
             else distance.text = "Distance: " + String.Format("{0:.##}", distance_int);
         }
