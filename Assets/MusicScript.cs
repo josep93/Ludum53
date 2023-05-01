@@ -34,6 +34,8 @@ public class MusicScript : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+        audioSource = GetComponents<AudioSource>()[0];
+        audioSource2 = GetComponents<AudioSource>()[1];
         StopMusic();
     }
 
@@ -45,7 +47,7 @@ public class MusicScript : MonoBehaviour
     }
     public void SelectTrack(int index, bool loop = false)
     {
-        if (audioSource.clip == clips[index]) return;
+        if (audioSource.clip == clips[index])return;
         audioSource.clip = clips[index];
         audioSource.loop = loop;
         audioSource.Play();
