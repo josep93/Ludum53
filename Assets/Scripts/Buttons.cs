@@ -8,7 +8,8 @@ using UnityEngine.EventSystems;
 
 public class Buttons : MonoBehaviour
 {
- public AudioSource audioSource;
+    
+    public AudioSource audioSource;
     //public AudioClip audioClip;
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class Buttons : MonoBehaviour
     {
         
     }
+
     public void OnBotonEmpezar()
     {
         
@@ -33,13 +35,13 @@ public class Buttons : MonoBehaviour
 
     public void OnPointerEnter()
     {
-    //audioSource.clip = sound;
-    audioSource.Play();
+        //audioSource.clip = sound;
+        audioSource.Play();
     }
 
     public void OnPointerExit()
     {
-    audioSource.Stop();
+        audioSource.Stop();
     }
 }
 
