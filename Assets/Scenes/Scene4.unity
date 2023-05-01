@@ -999,7 +999,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b5941aee13caa42b262c39a57d9d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {fileID: 18639252}
+  state: 0
+  velocityText: {fileID: 18639252}
+  fakePackage: {fileID: 1779540715}
 --- !u!1 &255331424
 GameObject:
   m_ObjectHideFlags: 0
@@ -3646,7 +3648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198658130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4000, y: -9.5, z: -0.2037001}
+  m_LocalPosition: {x: 5000, y: -9.5, z: -0.2037001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4501,6 +4503,7 @@ MonoBehaviour:
   - {fileID: -1295342591, guid: 36b4c71fe8ce031419b31b24ce42b800, type: 3}
   - {fileID: 1516333078, guid: 36b4c71fe8ce031419b31b24ce42b800, type: 3}
   - {fileID: -188098499, guid: 36b4c71fe8ce031419b31b24ce42b800, type: 3}
+  musicFlag: 0
   state: 0
   powerBar: {fileID: 1970148852}
   realPackage: {fileID: 215904395}
@@ -5493,6 +5496,7 @@ MonoBehaviour:
   - {r: 0.49584818, g: 1, b: 0, a: 1}
   - {r: 0.80784315, g: 0, b: 0, a: 1}
   powerText: {fileID: 807995843}
+  sprite: {fileID: 0}
   packagePosition:
   - {x: 4, y: 1.5, z: 0}
   - {x: 2.75, y: 0.25, z: 0}

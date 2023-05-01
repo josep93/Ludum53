@@ -36,7 +36,7 @@ public class PackageScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI powerText;
 
     InputSystem inputActions;
-    SpriteRenderer sprite;
+    public SpriteRenderer sprite;
     
     State state;
     PauseStatus pauseStatus;

@@ -30,6 +30,8 @@ public class DelivererScript : MonoBehaviour
     int spriteState = 0;
     float frameTime = 0;
 
+    public bool musicFlag = false;
+
     [SerializeField] State state;
     [SerializeField] Image powerBar;
 
@@ -65,7 +67,10 @@ public class DelivererScript : MonoBehaviour
         this.state = state;
         if (state == State.Prepared)
         {
-            MusicScript.current.StopMusic();
+            if (!musicFlag)
+            {
+                MusicScript.current.StopMusic();
+            }
             spriteState = 0;
             return;
         }
@@ -76,7 +81,10 @@ public class DelivererScript : MonoBehaviour
         if (state == State.Delivered)
         {
             SpaceBarPromptScript.current.TurnOffPrompt();
-            MusicScript.current.SelectTrack(1, false);
+            if (!musicFlag)
+            {
+                MusicScript.current.SelectTrack(1, false);
+            }
             spriteState = 0;
             punchingSound.FinalPunch();
             punchingSound.FinalShout();
